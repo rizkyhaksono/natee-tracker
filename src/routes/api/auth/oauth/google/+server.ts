@@ -4,7 +4,16 @@ import { supabaseClient } from '$lib/supabaseClient';
 
 export const POST: RequestHandler = async ({ url }) => {
   try {
-    const redirectUrl = `${url.origin}/auth/callback`;
+    const envSite = import.meta.env.PUBLIC_SITE_URL;
+    let siteOrigin: string;
+
+    if (envSite) {
+      siteOrigin = envSite.replace(/\/+$/, '');
+    } else {
+      siteOrigin = url.origin;
+    }
+
+    const redirectUrl = `${siteOrigin}/auth/callback`;
 
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
