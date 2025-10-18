@@ -1,5 +1,5 @@
-const STORAGE_KEY = import.meta?.env?.STORAGE_KEY
-const ENCRYPTION_KEY = import.meta?.env?.ENCRYPTION_KEY
+const STORAGE_KEY = import.meta.env.STORAGE_KEY
+const ENCRYPTION_KEY = import.meta.env.ENCRYPTION_KEY
 
 const isBrowser = globalThis?.window !== undefined;
 

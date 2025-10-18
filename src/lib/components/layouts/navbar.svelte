@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { userStore } from '$lib/stores/userStore';
 	import { Button } from '$lib/components/ui/button';
 	import { Menu, X, LogOut } from '@lucide/svelte';
 	import ModeToggle from './mode-toggle.svelte';
 
-	let { user } = $props<{ user: any }>();
-	let mobileMenuOpen = $state(false);
+	let user: any = null;
+	let mobileMenuOpen = false;
 
 	const navItems = [
 		{ path: '/', name: 'Home' },
@@ -13,6 +14,15 @@
 		{ path: '/todo', name: 'To-Do' },
 		{ path: '/pomodoro', name: 'Pomodoro' },
 	];
+
+	const unsubscribe = userStore.subscribe((value) => {
+		user = value;
+	});
+
+	onMount(() => {
+		userStore.initUser?.();
+		return () => unsubscribe();
+	});
 
 	async function handleLogout() {
 		await userStore.signOut();
