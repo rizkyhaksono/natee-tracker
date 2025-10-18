@@ -3,20 +3,28 @@ const ENCRYPTION_KEY = import.meta.env.ENCRYPTION_KEY
 
 const isBrowser = globalThis.window !== undefined;
 
-function xorEncrypt(text: string, key: string): string {
+function xorEncrypt(text: string, key?: string): string {
+  if (!key) return btoa(text);
+
   let result = '';
   for (let i = 0; i < text.length; i++) {
-    result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    const t = text.codePointAt(i) ?? 0;
+    const k = key.codePointAt(i % key.length) ?? 0;
+    result += String.fromCodePoint(t ^ k);
   }
   return btoa(result);
 }
 
-function xorDecrypt(encrypted: string, key: string): string {
+function xorDecrypt(encrypted: string, key?: string): string {
   try {
+    if (!key) return atob(encrypted);
+
     const decoded = atob(encrypted);
     let result = '';
     for (let i = 0; i < decoded.length; i++) {
-      result += String.fromCharCode(decoded.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      const d = decoded.codePointAt(i) ?? 0;
+      const k = key.codePointAt(i % key.length) ?? 0;
+      result += String.fromCodePoint(d ^ k);
     }
     return result;
   } catch {
