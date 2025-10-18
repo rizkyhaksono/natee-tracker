@@ -1,7 +1,9 @@
-const STORAGE_KEY = import.meta.env.STORAGE_KEY
-const ENCRYPTION_KEY = import.meta.env.ENCRYPTION_KEY
+const STORAGE_KEY = import.meta?.env?.STORAGE_KEY
+const ENCRYPTION_KEY = import.meta?.env?.ENCRYPTION_KEY
 
-const isBrowser = globalThis.window !== undefined;
+const isBrowser = globalThis?.window !== undefined;
+
+if (!ENCRYPTION_KEY) console.warn('[auth/storage] ENCRYPTION_KEY is not set; falling back to base64 storage (not encrypted)');
 
 function xorEncrypt(text: string, key?: string): string {
   if (!key) return btoa(text);
