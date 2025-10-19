@@ -6,8 +6,8 @@
 
 <div class="container mx-auto max-w-6xl space-y-8 px-4 py-8">
 	<div class="text-center">
-		<h1 class="text-3xl font-bold sm:text-4xl">Welcome to Natee Tracker</h1>
-		<p class="mt-2 text-sm text-muted-foreground sm:text-base">
+		<h1 class="text-base font-bold sm:text-lg">Welcome to Natee Tracker</h1>
+		<p class="mt-2 text-sm text-muted-foreground sm:text-sm">
 			Your all-in-one productivity and expense tracking solution
 		</p>
 	</div>
@@ -17,7 +17,7 @@
 			<Card.Header>
 				<div class="flex items-center gap-2">
 					<DollarSign class="h-5 w-5 text-primary" />
-					<Card.Title class="text-lg">Expense Tracker</Card.Title>
+					<Card.Title class="text-base">Expense Tracker</Card.Title>
 				</div>
 				<Card.Description class="text-sm">
 					Track your expenses with detailed categorization
@@ -32,7 +32,7 @@
 			<Card.Header>
 				<div class="flex items-center gap-2">
 					<CheckSquare class="h-5 w-5 text-primary" />
-					<Card.Title class="text-lg">To-Do List</Card.Title>
+					<Card.Title class="text-base">To-Do List</Card.Title>
 				</div>
 				<Card.Description class="text-sm">
 					Manage your daily tasks and stay organized
@@ -47,7 +47,7 @@
 			<Card.Header>
 				<div class="flex items-center gap-2">
 					<Clock class="h-5 w-5 text-primary" />
-					<Card.Title class="text-lg">Pomodoro Timer</Card.Title>
+					<Card.Title class="text-base">Pomodoro Timer</Card.Title>
 				</div>
 				<Card.Description class="text-sm">
 					Boost productivity with the Pomodoro technique

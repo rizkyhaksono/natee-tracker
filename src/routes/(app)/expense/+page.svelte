@@ -75,7 +75,7 @@
 	<!-- Monthly Total -->
 	<Card.Root>
 		<Card.Header>
-			<Card.Title class="flex items-center text-lg">
+			<Card.Title class="flex items-center text-base">
 				<DollarSign class="mr-2 h-5 w-5" />
 				Monthly Total
 			</Card.Title>
@@ -98,7 +98,7 @@
 		<div transition:slide={{ duration: 300 }}>
 			<Card.Root>
 				<Card.Header>
-					<Card.Title class="text-lg">Add New Expense</Card.Title>
+					<Card.Title class="text-base">Add New Expense</Card.Title>
 				</Card.Header>
 				<Card.Content class="space-y-3">
 					<div class="space-y-1.5">
@@ -192,7 +192,7 @@
 									</p>
 								</div>
 								<div class="text-right">
-									<div class="text-base font-bold text-primary sm:text-lg">
+									<div class="text-base font-bold text-primary sm:text-base">
 										{formatCurrency(Number(expense.amount))}
 									</div>
 									<div class="mt-1 flex gap-1">
