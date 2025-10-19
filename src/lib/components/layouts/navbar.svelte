@@ -2,7 +2,8 @@
 	import { onMount } from 'svelte';
 	import { userStore } from '$lib/stores/userStore';
 	import { Button } from '$lib/components/ui/button';
-	import { Menu, X, LogOut } from '@lucide/svelte';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { Menu, X, LogOut, User } from '@lucide/svelte';
 	import ModeToggle from './mode-toggle.svelte';
 
 	let user: any = null;
@@ -12,7 +13,7 @@
 		{ path: '/', name: 'Home' },
 		{ path: '/expense', name: 'Expense' },
 		{ path: '/todo', name: 'To-Do' },
-		{ path: '/pomodoro', name: 'Pomodoro' },
+		{ path: '/pomodoro', name: 'Pomodoro' }
 	];
 
 	const unsubscribe = userStore.subscribe((value) => {
@@ -29,11 +30,13 @@
 	}
 </script>
 
-<nav class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+<nav
+	class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+>
 	<div class="container mx-auto px-4">
 		<div class="flex h-14 items-center justify-between">
 			<!-- Logo -->
-			<a href="/" class="text-lg font-bold">Natee Tracker</a>
+			<a href="/" class="text-base font-bold">Natee Tracker</a>
 
 			{#if user}
 				<!-- Desktop nav -->
@@ -47,11 +50,34 @@
 
 				<!-- Right side -->
 				<div class="hidden items-center gap-2 md:flex">
-					<span class="text-xs text-muted-foreground">{user.email}</span>
 					<ModeToggle />
-					<Button variant="ghost" size="sm" onclick={handleLogout}>
-						<LogOut class="h-4 w-4" />
-					</Button>
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger>
+							<Button variant="ghost" size="sm">
+								<User class="h-5 w-5" />
+							</Button>
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Content>
+							<DropdownMenu.Group>
+								<DropdownMenu.Label>
+									<p>My Profile</p>
+									<span class="text-xs text-muted-foreground">{user.email}</span>
+								</DropdownMenu.Label>
+								<DropdownMenu.Separator />
+								<DropdownMenu.Item>
+									<Button
+										variant="ghost"
+										class="flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-sm hover:bg-accent focus:outline-none"
+										onclick={handleLogout}
+										aria-label="Sign out"
+									>
+										<span>Sign out</span>
+										<LogOut class="h-4 w-4" />
+									</Button>
+								</DropdownMenu.Item>
+							</DropdownMenu.Group>
+						</DropdownMenu.Content>
+					</DropdownMenu.Root>
 				</div>
 
 				<!-- Mobile menu button -->
@@ -68,7 +94,7 @@
 			{:else}
 				<div class="flex items-center gap-2">
 					<ModeToggle />
-					<Button href="/auth/login" variant="ghost" size="sm">Login</Button>
+					<Button href="/auth/login" variant="default" size="sm">Login</Button>
 				</div>
 			{/if}
 		</div>
@@ -85,11 +111,13 @@
 						{item.name}
 					</a>
 				{/each}
-				<div class="mt-2 border-t pt-2">
-					<div class="px-3 py-1 text-xs text-muted-foreground">{user.email}</div>
-					<Button variant="ghost" size="sm" class="w-full justify-start" onclick={handleLogout}>
+				<div class="mt-2 flex items-center justify-between border-t pt-2">
+					<div class="px-3 py-1">
+						<p class="text-sm">My Profile</p>
+						<p class="text-xs text-muted-foreground">{user.email}</p>
+					</div>
+					<Button variant="ghost" size="sm" onclick={handleLogout}>
 						<LogOut class="mr-2 h-4 w-4" />
-						Sign Out
 					</Button>
 				</div>
 			</div>
