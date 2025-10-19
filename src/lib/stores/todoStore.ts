@@ -101,6 +101,7 @@ const createTodoStore = () => {
 			try {
 				const response = await fetch(`/api/todo/${id}`, {
 					method: 'DELETE',
+					headers: getAuthHeaders()
 				});
 
 				const { error } = await response.json();

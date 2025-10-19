@@ -4,9 +4,7 @@ import { supabaseClient } from '$lib/supabaseClient';
 
 async function getAuthenticatedUser(request: Request) {
   const authHeader = request.headers.get('Authorization');
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return null;
-  }
+  if (!authHeader?.startsWith('Bearer ')) return null;
 
   const token = authHeader.replace('Bearer ', '');
   const { data: { user }, error } = await supabaseClient.auth.getUser(token);
@@ -51,9 +49,7 @@ export const PATCH: RequestHandler = async ({ request, params }) => {
 
 export const DELETE: RequestHandler = async ({ request, params }) => {
   const user = await getAuthenticatedUser(request);
-  if (!user) {
-    return json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  if (!user) return json({ error: 'Unauthorized' }, { status: 401 });
 
   const id = params.id;
   if (!id) return json({ error: 'Todo ID is required' }, { status: 400 });
