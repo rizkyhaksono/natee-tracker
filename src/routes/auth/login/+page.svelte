@@ -60,8 +60,10 @@
 <div class="container flex min-h-screen items-center justify-center px-4">
 	<Card.Root class="w-full max-w-md">
 		<Card.Header class="space-y-1">
-			<Card.Title class="text-2xl">Sign In</Card.Title>
-			<Card.Description>Enter your email and password to access your account</Card.Description>
+			<Card.Title class="text-base">Sign In</Card.Title>
+			<Card.Description class="text-sm"
+				>Enter your email and password to access your account</Card.Description
+			>
 		</Card.Header>
 		<Card.Content class="space-y-4">
 			{#if error}

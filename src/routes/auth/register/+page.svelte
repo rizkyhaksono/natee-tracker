@@ -46,8 +46,10 @@
 <div class="container flex min-h-[calc(100vh-3.5rem)] items-center justify-center px-4">
 	<Card.Root class="w-full max-w-md">
 		<Card.Header class="space-y-1">
-			<Card.Title class="text-2xl">Create Account</Card.Title>
-			<Card.Description>Enter your information to create a new account</Card.Description>
+			<Card.Title class="text-base">Create Account</Card.Title>
+			<Card.Description class="text-sm"
+				>Enter your information to create a new account</Card.Description
+			>
 		</Card.Header>
 		<Card.Content class="space-y-4">
 			{#if error}
